@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="lo">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details - GadgetPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&family=Kanit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans Lao', 'Kanit', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen text-slate-800">
+
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold group-hover:rotate-12 transition shadow-lg shadow-blue-500/30">
+                    G</div>
+                <span class="text-xl font-bold uppercase text-gray-800 tracking-tighter">Gadget<span
+                        class="text-blue-600">Pro</span></span>
+            </a>
+
+            <a href="products.html"
+                class="group flex items-center gap-2 text-gray-500 hover:text-blue-600 font-medium transition bg-white border border-gray-200 px-4 py-2 rounded-full hover:shadow-md">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i>
+                <span>ກັບຄືນໜ້າສິນຄ້າ</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-12 px-4 flex-grow">
+        <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto bg-white p-6 md:p-10 rounded-[2.5rem] shadow-xl border border-gray-100 animate__animated animate__fadeInUp">
+
+            <div class="space-y-6">
+                <div
+                    class="bg-gray-50 rounded-[2rem] p-8 h-[400px] md:h-[500px] flex items-center justify-center border border-gray-100 relative overflow-hidden group">
+                    <img id="mainImg" src=""
+                        class="max-h-full max-w-full object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-xl">
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div
+                        class="bg-gray-50 rounded-2xl p-2 border border-gray-200 cursor-pointer hover:border-blue-500 transition-all hover:shadow-md">
+                        <img id="thumb1" onclick="changeImage(this.src)"
+                            class="h-20 w-full object-contain hover:scale-110 transition duration-300">
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-2xl p-2 border border-gray-200 cursor-pointer hover:border-blue-500 transition-all hover:shadow-md">
+                        <img id="thumb2" onclick="changeImage(this.src)"
+                            class="h-20 w-full object-contain hover:scale-110 transition duration-300">
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-2xl p-2 border border-gray-200 cursor-pointer hover:border-blue-500 transition-all hover:shadow-md">
+                        <img id="thumb3" onclick="changeImage(this.src)"
+                            class="h-20 w-full object-contain hover:scale-110 transition duration-300">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center">
+                <div class="mb-2">
+                    <span id="productCategory"
+                        class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                        ກຳລັງໂຫຼດ...
+                    </span>
+                </div>
+
+                <h1 id="productName" class="text-3xl md:text-5xl font-bold mt-4 mb-4 text-gray-900 leading-tight">
+                    ກຳລັງໂຫຼດຊື່ສິນຄ້າ...
+                </h1>
+
+                <div class="flex items-center gap-4 mb-8">
+                    <p id="productPrice" class="text-4xl text-blue-600 font-bold">₭0</p>
+                    <span class="text-gray-400 text-sm  mt-2"></span>
+                </div>
+
+                <div class="prose prose-slate max-w-none mb-10">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">ລາຍລະອຽດສິນຄ້າ:</h3>
+                    <p id="productDesc" class="text-gray-600 leading-relaxed whitespace-pre-line font-light">
+                        ກຳລັງໂຫຼດຂໍ້ມູນ...
+                    </p>
+                </div>
+
+                <div class="space-y-4 pt-6 border-t border-gray-100">
+                    <a href="https://m.me/GadgetProLaos" target="_blank"
+                        class="w-full bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-200 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 text-lg no-underline">
+                        <i class="fa-brands fa-facebook-messenger text-2xl"></i>
+                        ສັ່ງຊື້ຜ່ານ Facebook
+                    </a>
+
+                    <a href="tel:02012345678"
+                        class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-4 rounded-2xl shadow-lg shadow-slate-200 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 text-lg no-underline">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        ໂທສອບຖາມຂໍ້ມູນ
+                    </a>
+                </div>
+
+                <div class="mt-8 flex gap-6 text-sm text-gray-500 justify-center">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-blue-500"></i> ຮັບປະກັນສູນແທ້
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-truck-fast text-blue-500"></i> ຈັດສົ່ງທົ່ວປະເທດ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[#0f172a] text-gray-400 py-12 border-t border-gray-800 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-white font-bold text-xl mb-2 tracking-wide">GadgetPro</h3>
+            <p class="text-sm mb-6">ແຫຼ່ງລວມສິນຄ້າໄອທີ ແລະ ແກັດເຈັດ ຄຸນນະພາບດີທີ່ສຸດໃນລາວ</p>
+            <div class="text-xs text-gray-600">
+                <p>© 2026 GadgetPro Premium. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/detail.js"></script>
+</body>
+
+</html>

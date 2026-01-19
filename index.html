@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="lo">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ໜ້າທຳອິດ - Gadget Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans Lao', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-white flex flex-col min-h-screen">
+
+    <nav id="mainNav" class="fixed w-full z-50 transition-all duration-300 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html"
+                class="text-2xl font-bold tracking-wider text-gray-800 uppercase bg-white/80 backdrop-blur px-2 rounded">Gadget<span
+                    class="text-blue-600">Pro</span></a>
+
+            <div
+                class="hidden md:flex space-x-8 items-center bg-white/80 backdrop-blur px-6 py-2 rounded-full shadow-sm">
+                <a href="index.html" class="text-blue-600 font-bold">ໜ້າທຳອິດ</a>
+                <a href="products.html" class="text-gray-600 hover:text-blue-600 transition">ສິນຄ້າ</a>
+                <a href="promo.html" class="text-gray-600 hover:text-blue-600 transition">ໂປຣໂມຊັ່ນ</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition">ຕິດຕໍ່ເຮົາ</a>
+
+                <div id="authSection">
+                    <a href="login.html"
+                        class="bg-black text-white px-5 py-2 rounded-full hover:bg-gray-800 transition text-sm">ເຂົ້າສູ່ລະບົບ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-gray-900/80 to-transparent z-10"></div>
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000"
+            class="absolute inset-0 w-full h-full object-cover opacity-50">
+
+        <div class="container mx-auto px-6 relative z-20">
+            <div id="greetingMsg"
+                class="animate__animated animate__fadeInDown inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/20 text-blue-300 font-bold text-sm mb-6 border border-blue-500/30 backdrop-blur-sm">
+                ຍິນດີຕ້ອນຮັບ
+            </div>
+
+            <h1 class="animate__animated animate__fadeInLeft
+         text-5xl md:text-7xl lg:text-8xl
+         font-bold text-white mb-10
+         leading-[1.6] md:leading-[1.5] lg:leading-[1.4]">
+                ນະວັດຕະກຳ
+                <span class="inline-block mt-4
+           text-transparent bg-clip-text
+           bg-gradient-to-r from-blue-400 to-blue-600">
+                    ທີ່ເໜືອກວ່າ
+                </span>
+            </h1>
+
+
+            <p
+                class="animate__animated animate__fadeInUp animate__delay-1s text-lg md:text-xl text-gray-300 max-w-2xl font-light leading-relaxed mb-10">
+                ສຳຜັດປະສົບການເຕັກໂນໂລຊີລະດັບພຣີມຽມ ດີໄຊຫູຫລາ <br class="hidden md:block">
+                ຕອບໂຈດທຸກໄລຟ໌ສະໄຕລ໌ຂອງຜູ້ນຳໃນຍຸກດິຈິຕອນ.
+            </p>
+
+            <div class="animate__animated animate__fadeInUp animate__delay-1s flex flex-wrap gap-4">
+                <a href="products.html"
+                    class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-xl shadow-blue-500/20 transform hover:-translate-y-1 active:scale-95 text-center min-w-[160px]">
+                    ເບິ່ງສິນຄ້າ
+                </a>
+                <a href="contact.html"
+                    class="bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition border border-white/20 text-center min-w-[160px]">
+                    ນັດໝາຍຈອງ
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <span class="text-blue-600 font-bold tracking-widest uppercase text-sm">ຂໍ້ມູນເບື້ອງຕົ້ນ</span>
+            <h2 class="text-4xl font-bold mt-2 mb-16">ເປັນຫຍັງຕ້ອງເລືອກ GadgetPro?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div
+                    class="group p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:bg-blue-600 transition-all duration-500 transform hover:-translate-y-2">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition">💎</div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-white">ວັດສະດຸພຣີມຽມ</h3>
+                    <p class="text-gray-500 group-hover:text-blue-100">ຄັດສັນສະເພາະເກຣດ Titanium ແລະ Sapphire
+                        ທີ່ມີຄວາມທົນທານສູງ.</p>
+                </div>
+                <div
+                    class="group p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:bg-blue-600 transition-all duration-500 transform hover:-translate-y-2">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition">🛡️</div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-white">ຮັບປະກັນ 3 ປີ</h3>
+                    <p class="text-gray-500 group-hover:text-blue-100">ເບິ່ງແຍງທ່ານລະດັບ VIP ຕະຫຼອດອາຍຸການໃຊ້ງານ
+                        ພ້ອມເຄື່ອງສຳຮອງ.</p>
+                </div>
+                <div
+                    class="group p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:bg-blue-600 transition-all duration-500 transform hover:-translate-y-2">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-white">ເຕັກໂນໂລຊີລ້າສຸດ</h3>
+                    <p class="text-gray-500 group-hover:text-blue-100">ອັບເດດເທຣນນະວັດຕະກຳໃໝ່ໆກ່ອນໃຜໃນໂລກ
+                        ເພື່ອຊີວິດທີ່ງ່າຍຂຶ້ນ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-100/30 -skew-x-12 z-0"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-blue-600 font-bold tracking-widest text-xs uppercase flex items-center gap-2">
+                        <span class="w-8 h-[2px] bg-blue-600"></span> Best Sellers
+                    </span>
+                    <h2 class="text-4xl font-bold mt-2 text-gray-900">ສິນຄ້າຍອດນິຍົມ</h2>
+                    <p class="text-gray-500 mt-2">ສິນຄ້າທີ່ໄດ້ຮັບຄວາມນິຍົມສູງສຸດຈາກລູກຄ້າຂອງພວກເຮົາ</p>
+                </div>
+                <a href="products.html"
+                    class="group text-blue-600 font-bold flex items-center gap-2 mt-4 md:mt-0 hover:text-blue-700 transition bg-blue-50 px-6 py-3 rounded-full hover:bg-blue-100">
+                    ເບິ່ງທັງໝົດ <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div id="featuredProductsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="col-span-1 md:col-span-3 text-center py-10">
+                    <div
+                        class="animate-spin inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full">
+                    </div>
+                    <p class="text-gray-400 mt-2">ກຳລັງໂຫຼດຂໍ້ມູນ...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-blue-500">GadgetPro</h2>
+                <p class="text-gray-500 max-w-md mx-auto">ພວກເຮົາຄັດສັນສິ່ງທີ່ດີທີ່ສຸດມາໃຫ້ທ່ານ ສະເໝີ.
+                    ຕິດຕາມນະວັດຕະກຳໃໝ່ໆໄດ້ທີ່ນີ້.</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-8 text-gray-400">
+                <a href="https://www.facebook.com/" class="hover:text-blue-400 transition">Facebook</a>
+                <a href="https://www.instagram.com/" class="hover:text-blue-400 transition">Instagram</a>
+                <a href="https://www.tiktok.com/" class="hover:text-blue-400 transition">TikTok</a>
+            </div>
+            <p class="text-sm text-gray-600">© 2026 GadgetPro Premium Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

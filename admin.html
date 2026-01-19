@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="lo">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GadgetPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body { font-family: 'Noto Sans Lao', 'Kanit', sans-serif; background-color: #f1f5f9; }
+        .glass-modal { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/50">A</div>
+                <span class="text-xl font-bold tracking-wide">Admin Control</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                    <i class="fa-solid fa-store"></i> ໄປໜ້າຮ້ານຄ້າ
+                </a>
+                <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-red-500/30 flex items-center gap-2">
+                    <i class="fa-solid fa-right-from-bracket"></i> ອອກຈາກລະບົບ
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-10 px-4">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-800">ຈັດການສິນຄ້າ</h1>
+                <p class="text-slate-500 mt-1">ເພີ່ມ, ລົບ, ແກ້ໄຂ ແລະ ອັບໂຫຼດຮູບພາບສິນຄ້າໄດ້ທີ່ນີ້</p>
+            </div>
+            <button onclick="openModal('add')" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition flex items-center gap-2 transform hover:-translate-y-1">
+                <i class="fa-solid fa-plus"></i> ເພີ່ມສິນຄ້າໃໝ່
+            </button>
+        </div>
+
+        <div class="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-100">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50 text-slate-500 uppercase text-xs font-bold tracking-wider">
+                        <tr>
+                            <th class="p-6">ຮູບພາບ</th>
+                            <th class="p-6">ຊື່ສິນຄ້າ</th>
+                            <th class="p-6">ໝວດໝູ່</th>
+                            <th class="p-6">ລາຄາ</th>
+                            <th class="p-6 text-center">ຈັດການ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody" class="divide-y divide-slate-100">
+                        </tbody>
+                </table>
+            </div>
+            <div id="emptyState" class="hidden text-center py-20">
+                <div class="text-6xl mb-4 grayscale opacity-50">📦</div>
+                <p class="text-slate-400">ຍັງບໍ່ມີສິນຄ້າໃນລະບົບ</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="productModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="glass-modal w-full max-w-2xl rounded-3xl shadow-2xl p-8 overflow-y-auto max-h-[90vh] fade-in relative no-scrollbar">
+                
+                <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-800 text-2xl transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <h2 id="modalTitle" class="text-2xl font-bold mb-6 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-box-open text-blue-600"></i> <span>ເພີ່ມສິນຄ້າໃໝ່</span>
+                </h2>
+
+                <form onsubmit="saveProduct(event)" id="productForm" class="space-y-5">
+                    <input type="hidden" id="editIndex">
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-1">ຊື່ສິນຄ້າ</label>
+                            <input type="text" id="pName" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-1">ລາຄາ (ກີບ)</label>
+                            <input type="number" id="pPrice" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-600 mb-1">ໝວດໝູ່</label>
+                        <select id="pCategory" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                            <option value="watch">ໂມງ (Watch)</option>
+                            <option value="audio">ເຄື່ອງສຽງ (Audio)</option>
+                            <option value="headphone">ຫູຟັງ (Headphone)</option>
+                            <option value="camera">ກ້ອງ (Camera)</option>
+                            <option value="smart-home">ອຸປະກອນບ້ານ (Smart Home)</option>
+                            <option value="gadget">ອຸປະກອນເສີມ (Gadget)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-600 mb-1">ລາຍລະອຽດສິນຄ້າ</label>
+                        <textarea id="pDesc" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="ພິມລາຍລະອຽດສິນຄ້າ..."></textarea>
+                    </div>
+
+                    <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                        <label class="block text-sm font-bold text-blue-800 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-images"></i> ຮູບພາບສິນຄ້າ (ເລືອກໄຟລ໌ ຫຼື ໃສ່ URL)
+                        </label>
+                        
+                        <div class="mb-4 bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
+                            <label class="text-xs font-bold text-gray-500 mb-1 block">ຮູບຫຼັກ (ຈຳເປັນ)</label>
+                            <div class="flex gap-2 items-center">
+                                <label class="cursor-pointer bg-blue-100 text-blue-700 px-3 py-2 rounded-lg text-sm hover:bg-blue-200 flex items-center gap-2 transition">
+                                    <i class="fa-solid fa-upload"></i> ເລືອກຮູບ
+                                    <input type="file" id="file1" accept="image/*" onchange="convertImage(this, 'img1Preview', 'img1Url')" class="hidden">
+                                </label>
+                                <span class="text-xs text-gray-400">ຫຼື</span>
+                                <input type="url" id="img1Url" placeholder="ວາງລິ້ງຮູບພາບ..." class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-2 text-sm">
+                            </div>
+                            <img id="img1Preview" class="h-24 w-auto mt-2 rounded-lg border hidden object-cover shadow-md">
+                        </div>
+
+                        <div class="mb-4 bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
+                            <label class="text-xs font-bold text-gray-500 mb-1 block">ຮູບເສີມ 1</label>
+                            <div class="flex gap-2 items-center">
+                                <label class="cursor-pointer bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-200 flex items-center gap-2 transition">
+                                    <i class="fa-solid fa-upload"></i> ເລືອກຮູບ
+                                    <input type="file" id="file2" accept="image/*" onchange="convertImage(this, 'img2Preview', 'img2Url')" class="hidden">
+                                </label>
+                                <input type="url" id="img2Url" placeholder="ວາງລິ້ງຮູບພາບ..." class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-2 text-sm">
+                            </div>
+                            <img id="img2Preview" class="h-24 w-auto mt-2 rounded-lg border hidden object-cover shadow-md">
+                        </div>
+
+                        <div class="bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
+                            <label class="text-xs font-bold text-gray-500 mb-1 block">ຮູບເສີມ 2</label>
+                            <div class="flex gap-2 items-center">
+                                <label class="cursor-pointer bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-200 flex items-center gap-2 transition">
+                                    <i class="fa-solid fa-upload"></i> ເລືອກຮູບ
+                                    <input type="file" id="file3" accept="image/*" onchange="convertImage(this, 'img3Preview', 'img3Url')" class="hidden">
+                                </label>
+                                <input type="url" id="img3Url" placeholder="ວາງລິ້ງຮູບພາບ..." class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-2 text-sm">
+                            </div>
+                            <img id="img3Preview" class="h-24 w-auto mt-2 rounded-lg border hidden object-cover shadow-md">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-500/20 text-lg flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-save"></i> ບັນທຶກຂໍ້ມູນ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="viewModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeViewModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white w-full max-w-lg rounded-[2rem] shadow-2xl overflow-hidden fade-in relative">
+                
+                <button onclick="closeViewModal()" class="absolute top-4 right-4 z-10 bg-black/50 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-black transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="h-64 bg-slate-100 flex items-center justify-center overflow-hidden relative group">
+                    <img id="viewMainImg" src="" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2 p-2">
+                        <img id="viewThumb1" onclick="swapViewImg(this.src)" class="w-12 h-12 rounded-lg border-2 border-white cursor-pointer hover:scale-110 transition shadow-lg object-cover bg-white">
+                        <img id="viewThumb2" onclick="swapViewImg(this.src)" class="w-12 h-12 rounded-lg border-2 border-white cursor-pointer hover:scale-110 transition shadow-lg object-cover bg-white">
+                        <img id="viewThumb3" onclick="swapViewImg(this.src)" class="w-12 h-12 rounded-lg border-2 border-white cursor-pointer hover:scale-110 transition shadow-lg object-cover bg-white">
+                    </div>
+                </div>
+
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span id="viewCategory" class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md uppercase"></span>
+                            <h2 id="viewName" class="text-2xl font-bold text-slate-800 mt-1"></h2>
+                        </div>
+                        <span id="viewPrice" class="text-xl font-bold text-green-600"></span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl h-32 overflow-y-auto text-sm text-slate-600 leading-relaxed border border-slate-100 custom-scroll" id="viewDesc"></div>
+                    <button onclick="closeViewModal()" class="w-full mt-6 bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-slate-800 transition">
+                        ປິດໜ້າຕ່າງ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
