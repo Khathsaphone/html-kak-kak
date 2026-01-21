@@ -1,5 +1,5 @@
 function submitForm(event) {
-    event.preventDefault(); // protect refresh
+    event.preventDefault(); // protect from page reload
 
     const btn = document.getElementById('submitBtn');
     const originalContent = btn.innerHTML; // keep original content
@@ -12,33 +12,31 @@ function submitForm(event) {
         </svg>
         <span>ກຳລັງສົ່ງ...</span>
     `;
-    btn.classList.add('opacity-70', 'cursor-not-allowed');
-    btn.disabled = true;
+    btn.classList.add('opacity-70', 'cursor-not-allowed'); 
+    btn.disabled = true; // ປິດບໍ່ໃຫ້ກົດຊ້ຳ
 
-    // 1.5 seconds later
+    // set delay to simulate sending
     setTimeout(() => {
-        
-        // show sweetalert success message
         Swal.fire({
             title: '<span style="font-family:Noto Sans Lao">ສົ່ງຂໍ້ຄວາມສຳເລັດ!</span>',
             html: '<span style="color:#64748b; font-family:Noto Sans Lao">ຂອບໃຈທີ່ຕິດຕໍ່ຫາພວກເຮົາ<br>ທີມງານຈະຕິດຕໍ່ກັບຄືນພາຍໃນ 24 ຊົ່ວໂມງ</span>',
             icon: 'success',
             confirmButtonText: 'ຕົກລົງ',
-            confirmButtonColor: '#0f172a',
+            confirmButtonColor: '#0f172a', 
             background: '#ffffff',
             backdrop: `rgba(0,0,0,0.4)`,
             showClass: {
-                popup: 'animate__animated animate__fadeInDown' // down effect
+                popup: 'animate__animated animate__fadeInDown' // Effect down
             },
             hideClass: {
                 popup: 'animate__animated animate__fadeOutUp'
             }
         }).then(() => {
-            //work after alert closed
+            // work after close
             document.getElementById('contactForm').reset(); // clear form
         });
         
-        // clear loading state
+        // set button back to original
         btn.innerHTML = originalContent;
         btn.classList.remove('opacity-70', 'cursor-not-allowed');
         btn.disabled = false;

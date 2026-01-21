@@ -1,10 +1,10 @@
-// 1. Time Detection (Greeting)
+// time greeting
 function detectTime() {
     const hour = new Date().getHours();
     let greeting = "";
     let icon = "";
     let color = "";
-
+    
     if (hour >= 5 && hour < 12) {
         greeting = "ສະບາຍດີຕອນເຊົ້າ";
         icon = "☀️";
@@ -20,7 +20,7 @@ function detectTime() {
     }
 
     const msgElement = document.getElementById('greetingMsg');
-    if (msgElement) {
+    if(msgElement) {
         msgElement.innerHTML = `
             <span class="animate__animated animate__fadeIn">
                 ${icon} <span class="${color} font-bold">${greeting}!</span> ເລີ່ມຕົ້ນມື້ດີໆກັບ GadgetPro
@@ -29,7 +29,7 @@ function detectTime() {
     }
 }
 
-// 2. Scroll Detection
+//  Scroll Detection 
 function handleScroll() {
     const nav = document.getElementById('mainNav');
     if (window.scrollY > 50) {
@@ -41,7 +41,7 @@ function handleScroll() {
     }
 }
 
-// 3. Login Status Check 
+//  Login Status Check 
 function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const username = localStorage.getItem('username');
@@ -97,12 +97,12 @@ function handleLogout() {
     });
 }
 
-// load product detail
+// load featured products on homepage
 function loadFeaturedProducts() {
     const container = document.getElementById('featuredProductsContainer');
     if (!container) return;
 
-    // get products from localStorage
+    // load products from localStorage
     const storedProducts = localStorage.getItem('products');
     let products = [];
 
@@ -114,7 +114,7 @@ function loadFeaturedProducts() {
         }
     }
 
-    // if no products, use sample data
+    // if no products found, use sample data
     if (products.length === 0) {
         products = [
             {
@@ -141,16 +141,16 @@ function loadFeaturedProducts() {
         ];
     }
 
-    // latest 3 products
-    const top3Products = products.slice(-3).reverse();
+    // get top 3 latest products
+    const top3Products = products.slice(-3).reverse(); 
 
-    // render products
+    // create HTML for top 3 products
     container.innerHTML = top3Products.map((product, index) => {
-
+        
         // manage cover image
         let coverImage = "";
         if (Array.isArray(product.images) && product.images.length > 0) {
-            coverImage = product.images[0];
+            coverImage = product.images[0]; 
         } else {
             coverImage = product.image || product.img || 'https://via.placeholder.com/400x300?text=No+Image';
         }
@@ -163,21 +163,22 @@ function loadFeaturedProducts() {
             'smart-home': 'ອຸປະກອນບ້ານ',
             'camera': 'ກ້ອງ',
             'gadget': 'ອຸປະກອນເສີມ',
+            'shoe': 'ເກີບ'
         };
         const categoryLao = categoryMap[product.category] || product.category;
 
         // manage price display
         let displayPrice = product.price;
         if (!isNaN(product.price)) {
-            displayPrice = Number(product.price).toLocaleString();
+             displayPrice = Number(product.price).toLocaleString();
         }
 
-        // --- (Product Card) ---
+        // product card template
         return `
         <div class="product-item group bg-white rounded-[2.5rem] p-4 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 relative animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.1}s">
             
             <div class="relative h-72 rounded-[2rem] overflow-hidden bg-gray-50 flex items-center justify-center mb-4">
-                <span class="absolute top-4 left-4 bg-[#1e293b] backdrop-blur-md text-white text-[12px] font-bold px-3 py-1 rounded-full z-10 shadow-lg font-sans">
+                <span class="absolute top-4 left-4 bg-[#1e293b] backdrop-blur-md text-white text-[12px] font-bold px-3 py-1 rounded-full z-10 shadow-lg">
                     ${categoryLao}
                 </span>
 
@@ -188,19 +189,19 @@ function loadFeaturedProducts() {
             
             <div class="px-2 pb-2">
                 <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-xl font-bold text-gray-900 truncate pr-2 font-sans">${product.name}</h3>
+                    <h3 class="text-xl font-bold text-gray-900 truncate pr-2">${product.name}</h3>
                     
-                    <span class="bg-blue-50 text-blue-600 text-base font-bold px-3 py-1 rounded-lg whitespace-nowrap font-sans">
+                    <span class="bg-blue-50 text-blue-600 text-base font-bold px-3 py-1 rounded-lg whitespace-nowrap">
                         ₭${displayPrice}
                     </span>
                 </div>
                 
-                <p class="text-gray-400 text-sm mb-6 line-clamp-1 font-light font-sans">
+                <p class="text-gray-400 text-sm mb-6 line-clamp-1 font-light">
                     ໝວດໝູ່: ${categoryLao}
                 </p>
 
                 <a href="detail.html?id=${product.id}" 
-                    class="block w-full bg-[#0f172a] text-white py-4 rounded-2xl font-bold text-center hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 active:scale-95 font-sans">
+                    class="block w-full bg-[#0f172a] text-white py-4 rounded-2xl font-bold text-center hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 active:scale-95">
                     ເບິ່ງລາຍລະອຽດ
                 </a>
             </div>
@@ -209,7 +210,7 @@ function loadFeaturedProducts() {
     }).join('');
 }
 
-// start here
+// start functions on page load
 document.addEventListener('DOMContentLoaded', () => {
     detectTime();
     checkLoginStatus();

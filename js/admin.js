@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // check login status
+    // check if admin is logged in
     if (localStorage.getItem('isLoggedIn') !== 'true') {
         window.location.href = 'login.html';
     }
     loadProducts();
 });
 
-// load products from localStorage and display in table
+// load products
 function loadProducts() {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const tbody = document.getElementById('productTableBody');
@@ -24,6 +24,18 @@ function loadProducts() {
     products.forEach((p, index) => {
         let mainImg = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : (p.image || 'https://via.placeholder.com/100?text=No+Img');
         
+        // translate category
+        const categoryMap = {
+            'watch': 'ໂມງ',
+            'audio': 'ເຄື່ອງສຽງ',
+            'headphone': 'ຫູຟັງ',
+            'smart-home': 'ອຸປະກອນບ້ານ',
+            'camera': 'ກ້ອງ',
+            'gadget': 'ອຸປະກອນເສີມ',
+            'shoe': 'ເກີບ'
+        };
+        const categoryLao = categoryMap[p.category] || p.category;
+
         const row = `
             <tr class="hover:bg-slate-50 transition border-b border-slate-100 last:border-0">
                 <td class="p-4">
@@ -37,7 +49,7 @@ function loadProducts() {
                 </td>
                 <td class="p-4">
                     <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-                        ${p.category}
+                        ${categoryLao}
                     </span>
                 </td>
                 <td class="p-4 font-bold text-slate-700">
@@ -62,11 +74,11 @@ function loadProducts() {
     });
 }
 
-// function to convert image to base64
+// change image to base64
 function convertImage(input, previewId, urlInputId) {
     const file = input.files[0];
     if (file) {
-        //if file size > 500KB, show error
+        // 500 KB limit
         if (file.size > 500000) {
             Swal.fire({
                 icon: 'error',
@@ -74,33 +86,33 @@ function convertImage(input, previewId, urlInputId) {
                 text: 'ກະລຸນາໃຊ້ຮູບຂະໜາດບໍ່ເກີນ 500KB ຫຼື ໃຊ້ URL ແທນ',
                 confirmButtonColor: '#ef4444'
             });
-            input.value = ''; // clear the input
+            input.value = ''; 
             return;
         }
 
         const reader = new FileReader();
         reader.onload = function(e) {
             const base64 = e.target.result;
-            // 1. show preview image
+            // 1. ສະແດງຮູບຕົວຢ່າງ
             const preview = document.getElementById(previewId);
             preview.src = base64;
             preview.classList.remove('hidden');
             
-            // base64 to input field
+            // 2. ບັນທຶກ Base64 ລົງໃນ input
             document.getElementById(urlInputId).value = base64;
         };
         reader.readAsDataURL(file);
     }
 }
 
-// manage modal edit/add product
+// manage modal add/edit
 function openModal(mode, index = null) {
     const modal = document.getElementById('productModal');
     const form = document.getElementById('productForm');
     const title = document.getElementById('modalTitle');
     const editInput = document.getElementById('editIndex');
 
-    // clear previous previews
+    // ລ້າງຮູບເກົ່າກ່ອນເປີດ
     ['img1Preview', 'img2Preview', 'img3Preview'].forEach(id => {
         const el = document.getElementById(id);
         el.src = '';
@@ -125,7 +137,7 @@ function openModal(mode, index = null) {
         document.getElementById('pCategory').value = p.category;
         document.getElementById('pDesc').value = p.description || '';
 
-        // insert images into preview and url inputs
+        // get images
         let imgs = Array.isArray(p.images) ? p.images : [p.image];
         
         const setImg = (urlId, previewId, url) => {
@@ -148,14 +160,13 @@ function closeModal() {
     document.getElementById('productModal').classList.add('hidden');
 }
 
-// save product (add or edit)
+// save product (add/edit)
 function saveProduct(event) {
     event.preventDefault();
 
     const index = document.getElementById('editIndex').value;
     const products = JSON.parse(localStorage.getItem('products')) || [];
 
-    // get image URLs from inputs
     const img1 = document.getElementById('img1Url').value;
     const img2 = document.getElementById('img2Url').value;
     const img3 = document.getElementById('img3Url').value;
@@ -198,7 +209,7 @@ function saveProduct(event) {
     }
 }
 
-// view product details in modal
+// describe product details
 function viewProduct(index) {
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const p = products[index];
@@ -206,8 +217,16 @@ function viewProduct(index) {
 
     let imgs = Array.isArray(p.images) && p.images.length > 0 ? p.images : [p.image || 'https://via.placeholder.com/400'];
     
+    // translate category
+    const categoryMap = {
+        'watch': 'ໂມງ', 'audio': 'ເຄື່ອງສຽງ', 'headphone': 'ຫູຟັງ',
+        'smart-home': 'ອຸປະກອນບ້ານ', 'camera': 'ກ້ອງ',
+        'gadget': 'ອຸປະກອນເສີມ', 'shoe': 'ເກີບ'
+    };
+    const categoryLao = categoryMap[p.category] || p.category;
+
     document.getElementById('viewName').innerText = p.name;
-    document.getElementById('viewCategory').innerText = p.category;
+    document.getElementById('viewCategory').innerText = categoryLao;
     document.getElementById('viewPrice').innerText = `₭${parseInt(p.price).toLocaleString()}`;
     document.getElementById('viewDesc').innerText = p.description || "ບໍ່ມີລາຍລະອຽດ";
 
@@ -230,20 +249,20 @@ function swapViewImg(src) {
     document.getElementById('viewMainImg').src = src;
 }
 
-// edit product in modal
+// edit delete logout
 function editProduct(index) {
     openModal('edit', index);
 }
 
 function deleteProduct(index) {
     Swal.fire({
-        title: 'ຢືນຢັນການລົບ?',
-        text: "ທ່ານຕ້ອງການລົບສິນຄ້ານີ້ແທ້ບໍ່? (ກູ້ຄືນບໍ່ໄດ້)",
+        title: 'ຢືນຢັນການລຶບ?',
+        text: "ທ່ານຕ້ອງການລຶບສິນຄ້ານີ້ແທ້ບໍ່? (ກູ້ຄືນບໍ່ໄດ້)",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#ef4444',
         cancelButtonColor: '#94a3b8',
-        confirmButtonText: 'ລົບເລີຍ!',
+        confirmButtonText: 'ລຶບເລີຍ!',
         cancelButtonText: 'ຍົກເລີກ',
         customClass: { popup: 'rounded-2xl' }
     }).then((result) => {
@@ -252,7 +271,7 @@ function deleteProduct(index) {
             products.splice(index, 1);
             localStorage.setItem('products', JSON.stringify(products));
             loadProducts();
-            Swal.fire('ລົບສຳເລັດ!', 'ສິນຄ້າຖືກລົບອອກຈາກລະບົບແລ້ວ', 'success');
+            Swal.fire('ລຶບສຳເລັດ!', 'ສິນຄ້າຖືກລຶບອອກຈາກລະບົບແລ້ວ', 'success');
         }
     });
 }
