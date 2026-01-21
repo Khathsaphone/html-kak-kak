@@ -1,13 +1,13 @@
-// function to handle login process
+// ฟังก์ชันจัดการการเข้าสู่ระบบ
 function handleLogin(event) {
-    event.preventDefault(); 
+    event.preventDefault(); // ป้องกันการรีเฟรชหน้าจอ
 
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
-    const originalText = loginBtn.innerText;
+    const originalText = loginBtn.innerText; 
 
-    // change button to loading state
+    // 1. เปลี่ยนปุ่มเป็นสถานะ Loading
     loginBtn.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -18,18 +18,21 @@ function handleLogin(event) {
     loginBtn.classList.add('opacity-75', 'cursor-not-allowed');
     loginBtn.disabled = true;
 
-    // delay to simulate checking
+    // 2. จำลองเวลาโหลด (1.5 วินาที)
     setTimeout(() => {
         const inputUser = usernameInput.value;
         const inputPass = passwordInput.value;
 
-        // check against stored users
-        const foundUser = (typeof allUsers !== 'undefined' ? allUsers : []).find(user =>
+        // ตรวจสอบว่ามีตัวแปร allUsers หรือไม่ (ป้องกัน Error)
+        const usersDB = (typeof allUsers !== 'undefined') ? allUsers : [];
+
+        // ค้นหา User
+        const foundUser = usersDB.find(user =>
             user.username === inputUser && user.password === inputPass
         );
 
         if (foundUser) {
-            // successful login
+            // ✅ เข้าสู่ระบบสำเร็จ
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('username', foundUser.name);
             localStorage.setItem('role', foundUser.role);
@@ -46,13 +49,22 @@ function handleLogin(event) {
                     </div>
                 `,
                 showConfirmButton: false,
-                timer: 2000,
+                timer: 3000,
                 timerProgressBar: true,
                 background: '#ffffff',
-                backdrop: `rgba(15, 23, 42, 0.6)`, 
+                
+                // 🐱 Nyan Cat พร้อมพื้นหลังสีน้ำเงินเข้มโปร่งแสง
+                backdrop: `
+                    rgba(15, 23, 42, 0.4)
+                    url("https://sweetalert2.github.io/images/nyan-cat.gif")
+                    left top
+                    no-repeat
+                `,
+                
                 showClass: { popup: 'animate__animated animate__zoomIn' },
                 hideClass: { popup: 'animate__animated animate__zoomOut' }
             }).then(() => {
+                // เปลี่ยนหน้าตาม Role
                 if (foundUser.role === 'admin') {
                     window.location.href = 'admin.html'; 
                 } else {
@@ -61,6 +73,7 @@ function handleLogin(event) {
             });
 
         } else {
+            // ❌ เข้าสู่ระบบไม่สำเร็จ
             Swal.fire({
                 icon: 'error',
                 title: '<span style="color:#ef4444; font-family:Noto Sans Lao;">ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ</span>',
@@ -75,19 +88,11 @@ function handleLogin(event) {
                 }
             });
 
-            // default button state
-            loginBtn.innerHTML = originalText;
+            // คืนค่าปุ่มกลับมาเหมือนเดิม
+            loginBtn.innerHTML = originalText; 
             loginBtn.classList.remove('opacity-75', 'cursor-not-allowed');
             loginBtn.disabled = false;
-            passwordInput.value = ''; //clear password field
+            passwordInput.value = ''; // ล้างรหัสผ่าน
         }
     }, 1500);
 }
-
-// start login function on button click
-document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('loginBtn');
-    if (btn) {
-        btn.addEventListener('click', handleLogin);
-    }
-});

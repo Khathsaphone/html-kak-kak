@@ -1,5 +1,5 @@
 // user data for authentication
-export const allUsers = [
+const allUsers = [
     {
         username: 'admin@gmail.com',
         password: '1234',
