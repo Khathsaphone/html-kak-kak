@@ -61,7 +61,6 @@ function renderProducts(items) {
         // -----------------------------------------------------------
         // product card template
         // -----------------------------------------------------------
-        // 🔴 แก้ไข: ลบ font-sans ออกທັງໝົດ เพื่อให้ใช้ฟอนต์ Noto Sans Lao จาก HTML
         const card = `
             <div class="product-item group bg-white rounded-[2.5rem] p-4 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 relative h-full flex flex-col" data-category="${product.category}">
                 
@@ -69,10 +68,6 @@ function renderProducts(items) {
                     <span class="absolute top-4 left-4 bg-[#1e293b] backdrop-blur-md text-white text-[12px] font-bold px-3 py-1 rounded-full z-10 shadow-lg">
                         ${categoryLao}
                     </span>
-
-                    <button onclick="toggleHeart(this)" class="absolute top-4 right-4 bg-white/80 backdrop-blur p-2 rounded-full shadow-sm hover:text-red-500 text-gray-400 transition transform hover:scale-110 z-20">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    </button>
 
                     <img src="${coverImage}" 
                         onerror="this.src='https://via.placeholder.com/400x400?text=Error'"
@@ -155,12 +150,3 @@ function updateWishlistBadge() {
     }
 }
 
-function showWishlistAlert() {
-    Swal.fire({
-        icon: 'info',
-        title: 'ລາຍການທີ່ຖືກໃຈ',
-        text: `ທ່ານມີສິນຄ້າທີ່ຖືກໃຈທັງໝົດ ${wishlistCount} ລາຍການ`,
-        confirmButtonColor: '#3b82f6',
-        confirmButtonText: 'ຕົກລົງ'
-    });
-}

@@ -4,7 +4,7 @@ function detectTime() {
     let greeting = "";
     let icon = "";
     let color = "";
-    
+
     if (hour >= 5 && hour < 12) {
         greeting = "ສະບາຍດີຕອນເຊົ້າ";
         icon = "☀️";
@@ -20,7 +20,7 @@ function detectTime() {
     }
 
     const msgElement = document.getElementById('greetingMsg');
-    if(msgElement) {
+    if (msgElement) {
         msgElement.innerHTML = `
             <span class="animate__animated animate__fadeIn">
                 ${icon} <span class="${color} font-bold">${greeting}!</span> ເລີ່ມຕົ້ນມື້ດີໆກັບ GadgetPro
@@ -40,20 +40,42 @@ function handleScroll() {
         nav.classList.add('p-4');
     }
 }
-
-//  Login Status Check 
+// Check Login Status and Update UI 
 function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const username = localStorage.getItem('username');
+
+    // get user role
+    const role = localStorage.getItem('role');
+
     const authSection = document.getElementById('authSection');
 
     if (isLoggedIn === 'true' && authSection) {
+
+        // build admin button HTML
+        let adminButtonHtml = '';
+
+        // if user is admin, add admin button
+        if (role === 'admin') {
+            adminButtonHtml = `
+                <a href="admin.html" 
+                   class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition-all transform hover:-translate-y-0.5"
+                   title="ໄປທີ່ໜ້າຈັດການລະບົບ">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>ໄປໜ້າແອັດມິນ</span>
+                </a>
+            `;
+        }
+
+        // get user info HTML
         authSection.innerHTML = `
             <div class="flex items-center gap-4 animate__animated animate__fadeInRight">
-                <div class="flex flex-col items-end">
+                
+                ${adminButtonHtml}  <div class="flex flex-col items-end">
                     <span class="text-xs text-gray-400">ຍິນດີຕ້ອນຮັບ</span>
                     <span class="text-blue-600 font-bold">👤 ${username}</span>
                 </div>
+                
                 <button onclick="handleLogout()" 
                     class="bg-gradient-to-r from-red-500 to-pink-600 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-lg shadow-red-200 hover:scale-105 transition-transform active:scale-95">
                     ອອກຈາກລະບົບ
@@ -62,7 +84,6 @@ function checkLoginStatus() {
         `;
     }
 }
-
 // 4. Logout Function 
 function handleLogout() {
     Swal.fire({
@@ -142,15 +163,15 @@ function loadFeaturedProducts() {
     }
 
     // get top 3 latest products
-    const top3Products = products.slice(-3).reverse(); 
+    const top3Products = products.slice(-3).reverse();
 
     // create HTML for top 3 products
     container.innerHTML = top3Products.map((product, index) => {
-        
+
         // manage cover image
         let coverImage = "";
         if (Array.isArray(product.images) && product.images.length > 0) {
-            coverImage = product.images[0]; 
+            coverImage = product.images[0];
         } else {
             coverImage = product.image || product.img || 'https://via.placeholder.com/400x300?text=No+Image';
         }
@@ -170,7 +191,7 @@ function loadFeaturedProducts() {
         // manage price display
         let displayPrice = product.price;
         if (!isNaN(product.price)) {
-             displayPrice = Number(product.price).toLocaleString();
+            displayPrice = Number(product.price).toLocaleString();
         }
 
         // product card template

@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Contact - Gadget Pro Premium</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&family=Kanit:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -17,11 +18,13 @@
             font-family: 'Noto Sans Lao', 'Kanit', sans-serif !important;
             background-color: #f8fafc;
         }
+
         .input-group:focus-within {
             border-color: #2563eb;
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
             background-color: #fff;
         }
+
         .input-group:focus-within i {
             color: #2563eb;
         }
@@ -30,14 +33,19 @@
 
 <body class="flex flex-col min-h-screen">
 
+
     <nav class="bg-white/80 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 border-b border-gray-100">
         <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-2 group">
-                <div class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold group-hover:rotate-12 transition shadow-lg shadow-blue-500/30">G</div>
-                <span class="text-xl font-bold uppercase text-gray-800 tracking-tighter">Gadget<span class="text-blue-600">Pro</span></span>
+                <div
+                    class="bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold group-hover:rotate-12 transition shadow-lg shadow-blue-500/30">
+                    G</div>
+                <span class="text-xl font-bold uppercase text-gray-800 tracking-tighter">Gadget<span
+                        class="text-blue-600">Pro</span></span>
             </a>
-            
-            <a href="index.html" class="group flex items-center gap-2 text-gray-500 hover:text-blue-600 font-medium transition px-4 py-2 rounded-full hover:bg-blue-50">
+
+            <a href="index.html"
+                class="group flex items-center gap-2 text-gray-500 hover:text-blue-600 font-medium transition px-4 py-2 rounded-full hover:bg-blue-50">
                 <i class="fa-solid fa-house group-hover:-translate-y-0.5 transition"></i>
                 <span class="hidden md:inline">ກັບໜ້າຫຼັກ</span>
             </a>
@@ -45,19 +53,26 @@
     </nav>
 
     <main class="container mx-auto py-16 px-4 flex-grow relative overflow-hidden">
-        
+
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-            <div class="absolute top-10 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-            <div class="absolute top-10 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div
+                class="absolute top-10 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
+            </div>
+            <div
+                class="absolute top-10 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
+            </div>
         </div>
 
         <div class="text-center mb-16 animate__animated animate__fadeInDown">
-            <span class="text-blue-600 font-bold tracking-[0.2em] text-xs uppercase bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">Contact Us</span>
+            <span
+                class="text-blue-600 font-bold tracking-[0.2em] text-xs uppercase bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">Contact
+                Us</span>
             <h1 class="text-3xl md:text-5xl font-bold mt-6 text-slate-800">
                 ຕິດຕໍ່ຝ່າຍບໍລິການລູກຄ້າ
             </h1>
             <p class="text-gray-500 mt-4 text-lg font-light max-w-2xl mx-auto">
-                ທີມງານ GadgetPro ພ້ອມໃຫ້ບໍລິການທ່ານ. ແວ່ຊົມສິນຄ້າຕົວຈິງທີ່ Showroom ຫຼື ສົ່ງຂໍ້ຄວາມຫາພວກເຮົາໄດ້ຕະຫຼອດ 24 ຊົ່ວໂມງ.
+                ທີມງານ GadgetPro ພ້ອມໃຫ້ບໍລິການທ່ານ. ແວ່ຊົມສິນຄ້າຕົວຈິງທີ່ Showroom ຫຼື ສົ່ງຂໍ້ຄວາມຫາພວກເຮົາໄດ້ຕະຫຼອດ 24
+                ຊົ່ວໂມງ.
             </p>
         </div>
 
@@ -65,41 +80,50 @@
 
             <div class="space-y-8 animate__animated animate__fadeInLeft">
 
-                <div class="relative h-80 rounded-[2rem] overflow-hidden shadow-2xl shadow-blue-900/10 border border-white group">
+                <div
+                    class="relative h-80 rounded-[2rem] overflow-hidden shadow-2xl shadow-blue-900/10 border border-white group">
                     <iframe
                         src="https://maps.google.com/maps?q=National+University+of+Laos+Faculty+of+Engineering&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         class="absolute inset-0 w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                         loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
 
-                    <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-lg border border-white/50 flex items-center gap-4 transition-transform duration-500 translate-y-2 group-hover:translate-y-0">
-                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white shrink-0">
+                    <div
+                        class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-lg border border-white/50 flex items-center gap-4 transition-transform duration-500 translate-y-2 group-hover:translate-y-0">
+                        <div
+                            class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white shrink-0">
                             <i class="fa-solid fa-map-location-dot"></i>
                         </div>
                         <div>
                             <p class="text-[10px] text-blue-600 font-bold uppercase tracking-widest">Our Location</p>
-                            <h3 class="text-sm font-bold text-gray-900 line-clamp-1">ຄະນະວິສະວະກຳສາດ ມະຫາວິທະຍາໄລແຫ່ງຊາດ</h3>
+                            <h3 class="text-sm font-bold text-gray-900 line-clamp-1">ຄະນະວິສະວະກຳສາດ ມະຫາວິທະຍາໄລແຫ່ງຊາດ
+                            </h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-lg shadow-slate-200/50 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl mb-4 shadow-sm">
+                    <div
+                        class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-lg shadow-slate-200/50 hover:-translate-y-1 transition duration-300">
+                        <div
+                            class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl mb-4 shadow-sm">
                             <i class="fa-solid fa-store"></i>
                         </div>
                         <h3 class="font-bold text-lg mb-2 text-slate-800">ຫ້ອງ 204</h3>
                         <p class="text-gray-500 text-sm mb-4 leading-relaxed">
                             ຊັ້ນ 2, ຕືກ EN
                         </p>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-100">
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-100">
                             <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                             ເປີດທຸກວັນ 10:00 - 21:00
                         </span>
                     </div>
 
-                    <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-lg shadow-slate-200/50 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl mb-4 shadow-sm">
+                    <div
+                        class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-lg shadow-slate-200/50 hover:-translate-y-1 transition duration-300">
+                        <div
+                            class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl mb-4 shadow-sm">
                             <i class="fa-solid fa-headset"></i>
                         </div>
                         <h3 class="font-bold text-lg mb-2 text-slate-800">ຊ່ອງທາງດ່ວນ</h3>
@@ -118,17 +142,21 @@
                 </div>
             </div>
 
-            <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-white animate__animated animate__fadeInRight relative overflow-hidden">
+            <div
+                class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-white animate__animated animate__fadeInRight relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-0"></div>
 
                 <h3 class="text-2xl font-bold mb-2 text-slate-800 relative z-10">ຝາກຂໍ້ຄວາມຫາພວກເຮົາ</h3>
-                <p class="text-gray-500 text-sm mb-8 relative z-10">ກະລຸນາຕື່ມຂໍ້ມູນລຸ່ມນີ້ ແລ້ວທີມງານຈະຕິດຕໍ່ກັບຄືນໂດຍໄວ.</p>
+                <p class="text-gray-500 text-sm mb-8 relative z-10">ກະລຸນາຕື່ມຂໍ້ມູນລຸ່ມນີ້
+                    ແລ້ວທີມງານຈະຕິດຕໍ່ກັບຄືນໂດຍໄວ.</p>
 
                 <form id="contactForm" onsubmit="submitForm(event)" class="space-y-5 relative z-10">
-                    
+
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">ຊື່ ແລະ ນາມສະກຸນ</label>
-                        <div class="input-group flex items-center bg-slate-50 border border-slate-200 rounded-2xl p-4 transition-all duration-300">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">ຊື່ ແລະ
+                            ນາມສະກຸນ</label>
+                        <div
+                            class="input-group flex items-center bg-slate-50 border border-slate-200 rounded-2xl p-4 transition-all duration-300">
                             <i class="fa-regular fa-user text-gray-400 mr-3 text-lg transition-colors"></i>
                             <input type="text" required placeholder="ລະບຸຊື່ຂອງທ່ານ..."
                                 class="w-full bg-transparent outline-none text-slate-700 placeholder-gray-400">
@@ -136,8 +164,10 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">ເບີໂທຕິດຕໍ່</label>
-                        <div class="input-group flex items-center bg-slate-50 border border-slate-200 rounded-2xl p-4 transition-all duration-300">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">ເບີໂທຕິດຕໍ່</label>
+                        <div
+                            class="input-group flex items-center bg-slate-50 border border-slate-200 rounded-2xl p-4 transition-all duration-300">
                             <i class="fa-solid fa-phone-volume text-gray-400 mr-3 text-lg transition-colors"></i>
                             <input type="tel" required placeholder="020 xxxx xxxx"
                                 class="w-full bg-transparent outline-none text-slate-700 placeholder-gray-400">
@@ -145,8 +175,10 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">ຂໍ້ຄວາມ</label>
-                        <div class="input-group flex items-start bg-slate-50 border border-slate-200 rounded-2xl p-4 transition-all duration-300">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">ຂໍ້ຄວາມ</label>
+                        <div
+                            class="input-group flex items-start bg-slate-50 border border-slate-200 rounded-2xl p-4 transition-all duration-300">
                             <i class="fa-regular fa-comment-dots text-gray-400 mr-3 text-lg mt-1 transition-colors"></i>
                             <textarea rows="4" required placeholder="ສອບຖາມຂໍ້ມູນສິນຄ້າ ຫຼື ບໍລິການ..."
                                 class="w-full bg-transparent outline-none text-slate-700 placeholder-gray-400 resize-none"></textarea>
@@ -169,7 +201,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 text-center md:text-left">
                 <div>
                     <h3 class="text-white font-bold text-xl mb-4 tracking-wide">GadgetPro</h3>
-                    <p class="text-sm leading-relaxed text-gray-400">ຮ້ານຄ້າອອນລາຍທີ່ຄັດສັນສະເພາະສິນຄ້າ IT ຄຸນນະພາບສູງ ຮັບປະກັນສູນແທ້ 100% ພ້ອມບໍລິການຫຼັງການຂາຍທີ່ດີຢ້ຽມ.</p>
+                    <p class="text-sm leading-relaxed text-gray-400">ຮ້ານຄ້າອອນລາຍທີ່ຄັດສັນສະເພາະສິນຄ້າ IT ຄຸນນະພາບສູງ
+                        ຮັບປະກັນສູນແທ້ 100% ພ້ອມບໍລິການຫຼັງການຂາຍທີ່ດີຢ້ຽມ.</p>
                 </div>
                 <div>
                     <h3 class="text-white font-bold text-lg mb-4 tracking-wide">ຕິດຕໍ່ພວກເຮົາ</h3>
@@ -178,7 +211,7 @@
                             <i class="fa-solid fa-phone text-blue-500"></i> 020-1234-5678
                         </li>
                         <li class="flex items-center justify-center md:justify-start gap-2 hover:text-white transition">
-                            <i class="fa-brands fa-line text-green-500 text-lg"></i> Line: @gadgetpro
+                            <i class="fa-brands fa-whatsapp text-green-500 text-lg"></i> WhatsApp: 020 5555 5555
                         </li>
                         <li class="flex items-center justify-center md:justify-start gap-2 hover:text-white transition">
                             <i class="fa-brands fa-facebook text-blue-600 text-lg"></i> Facebook: GadgetPro Laos
@@ -187,7 +220,8 @@
                 </div>
                 <div>
                     <h3 class="text-white font-bold text-lg mb-4 tracking-wide">ທີ່ຢູ່</h3>
-                    <p class="text-sm leading-relaxed">123 ຖະນົນລ້ານຊ້າງ, ນະຄອນຫຼວງວຽງຈັນ, <br> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ</p>
+                    <p class="text-sm leading-relaxed">123 ຖະນົນລ້ານຊ້າງ, ນະຄອນຫຼວງວຽງຈັນ, <br> ສາທາລະນະລັດ ປະຊາທິປະໄຕ
+                        ປະຊາຊົນລາວ</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500">
@@ -199,4 +233,5 @@
     <script src="js/contact.js"></script>
 
 </body>
+
 </html>

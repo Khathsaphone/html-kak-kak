@@ -13,7 +13,7 @@ function submitForm(event) {
         <span>ກຳລັງສົ່ງ...</span>
     `;
     btn.classList.add('opacity-70', 'cursor-not-allowed'); 
-    btn.disabled = true; // ປິດບໍ່ໃຫ້ກົດຊ້ຳ
+    btn.disabled = true; 
 
     // set delay to simulate sending
     setTimeout(() => {

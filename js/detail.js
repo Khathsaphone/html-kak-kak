@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // main image
         document.getElementById('mainImg').src = images[0];
         
-        // set images ຍ
+        // set images 
         document.getElementById('thumb1').src = images[0];
         document.getElementById('thumb2').src = images[1] || images[0]; 
         document.getElementById('thumb3').src = images[2] || images[0];
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Swal.fire({
             icon: 'error',
             title: 'ຂໍອະໄພ',
-            text: 'ບໍ່ພົບຂໍ້ມູນສິນຄ້ານີ້ ຫຼື ສິນຄ້າອາດຖືກລຶບໄປແລ້ວ',
+            text: 'ບໍ່ພົບຂໍ້ມູນສິນຄ້ານີ້ ຫຼື ສິນຄ້າອາດຖືກລົບໄປແລ້ວ',
             confirmButtonText: 'ກັບຄືນ'
         }).then(() => {
             window.location.href = 'products.html';

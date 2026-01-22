@@ -1,13 +1,13 @@
-// ฟังก์ชันจัดการการเข้าสู่ระบบ
+// function to handle login process
 function handleLogin(event) {
-    event.preventDefault(); // ป้องกันการรีเฟรชหน้าจอ
+    event.preventDefault(); 
 
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
     const originalText = loginBtn.innerText; 
 
-    // 1. เปลี่ยนปุ่มเป็นสถานะ Loading
+    // change button to loading state
     loginBtn.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -18,21 +18,20 @@ function handleLogin(event) {
     loginBtn.classList.add('opacity-75', 'cursor-not-allowed');
     loginBtn.disabled = true;
 
-    // 2. จำลองเวลาโหลด (1.5 วินาที)
+    // delay to simulate authentication process
     setTimeout(() => {
         const inputUser = usernameInput.value;
         const inputPass = passwordInput.value;
 
-        // ตรวจสอบว่ามีตัวแปร allUsers หรือไม่ (ป้องกัน Error)
+        // check user against database
         const usersDB = (typeof allUsers !== 'undefined') ? allUsers : [];
 
-        // ค้นหา User
+        // search for matching user
         const foundUser = usersDB.find(user =>
             user.username === inputUser && user.password === inputPass
         );
 
         if (foundUser) {
-            // ✅ เข้าสู่ระบบสำเร็จ
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('username', foundUser.name);
             localStorage.setItem('role', foundUser.role);
@@ -53,7 +52,6 @@ function handleLogin(event) {
                 timerProgressBar: true,
                 background: '#ffffff',
                 
-                // 🐱 Nyan Cat พร้อมพื้นหลังสีน้ำเงินเข้มโปร่งแสง
                 backdrop: `
                     rgba(15, 23, 42, 0.4)
                     url("https://sweetalert2.github.io/images/nyan-cat.gif")
@@ -64,7 +62,7 @@ function handleLogin(event) {
                 showClass: { popup: 'animate__animated animate__zoomIn' },
                 hideClass: { popup: 'animate__animated animate__zoomOut' }
             }).then(() => {
-                // เปลี่ยนหน้าตาม Role
+                // change page based on role
                 if (foundUser.role === 'admin') {
                     window.location.href = 'admin.html'; 
                 } else {
@@ -73,7 +71,6 @@ function handleLogin(event) {
             });
 
         } else {
-            // ❌ เข้าสู่ระบบไม่สำเร็จ
             Swal.fire({
                 icon: 'error',
                 title: '<span style="color:#ef4444; font-family:Noto Sans Lao;">ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ</span>',
@@ -88,11 +85,11 @@ function handleLogin(event) {
                 }
             });
 
-            // คืนค่าปุ่มกลับมาเหมือนเดิม
+            // detach loading state
             loginBtn.innerHTML = originalText; 
             loginBtn.classList.remove('opacity-75', 'cursor-not-allowed');
             loginBtn.disabled = false;
-            passwordInput.value = ''; // ล้างรหัสผ่าน
+            passwordInput.value = ''; 
         }
     }, 1500);
 }

@@ -92,7 +92,7 @@ function subscribe() {
                 confirmButton: 'rounded-xl px-6'
             },
             showClass: {
-                popup: 'animate__animated animate__shakeX' // ສັ່ນເຕືອນ
+                popup: 'animate__animated animate__shakeX' // shake effect
             }
         });
     }

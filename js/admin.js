@@ -23,7 +23,7 @@ function loadProducts() {
 
     products.forEach((p, index) => {
         let mainImg = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : (p.image || 'https://via.placeholder.com/100?text=No+Img');
-        
+
         // translate category
         const categoryMap = {
             'watch': 'ໂມງ',
@@ -86,19 +86,19 @@ function convertImage(input, previewId, urlInputId) {
                 text: 'ກະລຸນາໃຊ້ຮູບຂະໜາດບໍ່ເກີນ 500KB ຫຼື ໃຊ້ URL ແທນ',
                 confirmButtonColor: '#ef4444'
             });
-            input.value = ''; 
+            input.value = '';
             return;
         }
 
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const base64 = e.target.result;
-            // 1. ສະແດງຮູບຕົວຢ່າງ
+            // show preview
             const preview = document.getElementById(previewId);
             preview.src = base64;
             preview.classList.remove('hidden');
-            
-            // 2. ບັນທຶກ Base64 ລົງໃນ input
+
+            // save base64 to hidden input
             document.getElementById(urlInputId).value = base64;
         };
         reader.readAsDataURL(file);
@@ -112,7 +112,7 @@ function openModal(mode, index = null) {
     const title = document.getElementById('modalTitle');
     const editInput = document.getElementById('editIndex');
 
-    // ລ້າງຮູບເກົ່າກ່ອນເປີດ
+    // clear previous images
     ['img1Preview', 'img2Preview', 'img3Preview'].forEach(id => {
         const el = document.getElementById(id);
         el.src = '';
@@ -139,7 +139,7 @@ function openModal(mode, index = null) {
 
         // get images
         let imgs = Array.isArray(p.images) ? p.images : [p.image];
-        
+
         const setImg = (urlId, previewId, url) => {
             const input = document.getElementById(urlId);
             const preview = document.getElementById(previewId);
@@ -164,12 +164,26 @@ function closeModal() {
 function saveProduct(event) {
     event.preventDefault();
 
+    // get form data
+    const img1 = document.getElementById('img1Url').value.trim();
+    const img2 = document.getElementById('img2Url').value.trim();
+    const img3 = document.getElementById('img3Url').value.trim();
+
+    //check images not empty
+    if (img1 === "" || img2 === "" || img3 === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'ຮູບພາບບໍ່ຄົບ!',
+            text: 'ກະລຸນາໃສ່ຮູບພາບໃຫ້ຄົບທັງ 3 ຮູບ ກ່ອນບັນທຶກ',
+            confirmButtonText: 'ຕົກລົງ',
+            confirmButtonColor: '#f59e0b' 
+        });
+        return; 
+    }
+
+    // get other product details
     const index = document.getElementById('editIndex').value;
     const products = JSON.parse(localStorage.getItem('products')) || [];
-
-    const img1 = document.getElementById('img1Url').value;
-    const img2 = document.getElementById('img2Url').value;
-    const img3 = document.getElementById('img3Url').value;
 
     const newProduct = {
         id: index == '-1' ? Date.now() : products[index].id,
@@ -177,7 +191,8 @@ function saveProduct(event) {
         price: document.getElementById('pPrice').value,
         category: document.getElementById('pCategory').value,
         description: document.getElementById('pDesc').value,
-        images: [img1, img2, img3].filter(url => url !== "")
+        // get images as array if not empty
+        images: [img1, img2, img3]
     };
 
     try {
@@ -190,7 +205,7 @@ function saveProduct(event) {
         localStorage.setItem('products', JSON.stringify(products));
         closeModal();
         loadProducts();
-        
+
         Swal.fire({
             icon: 'success',
             title: 'ສຳເລັດ!',
@@ -216,7 +231,7 @@ function viewProduct(index) {
     const modal = document.getElementById('viewModal');
 
     let imgs = Array.isArray(p.images) && p.images.length > 0 ? p.images : [p.image || 'https://via.placeholder.com/400'];
-    
+
     // translate category
     const categoryMap = {
         'watch': 'ໂມງ', 'audio': 'ເຄື່ອງສຽງ', 'headphone': 'ຫູຟັງ',
@@ -256,13 +271,13 @@ function editProduct(index) {
 
 function deleteProduct(index) {
     Swal.fire({
-        title: 'ຢືນຢັນການລຶບ?',
-        text: "ທ່ານຕ້ອງການລຶບສິນຄ້ານີ້ແທ້ບໍ່? (ກູ້ຄືນບໍ່ໄດ້)",
+        title: 'ຢືນຢັນການລົບ?',
+        text: "ທ່ານຕ້ອງການລົບສິນຄ້ານີ້ແທ້ບໍ່? (ກູ້ຄືນບໍ່ໄດ້)",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#ef4444',
         cancelButtonColor: '#94a3b8',
-        confirmButtonText: 'ລຶບເລີຍ!',
+        confirmButtonText: 'ລົບເລີຍ!',
         cancelButtonText: 'ຍົກເລີກ',
         customClass: { popup: 'rounded-2xl' }
     }).then((result) => {
@@ -271,7 +286,7 @@ function deleteProduct(index) {
             products.splice(index, 1);
             localStorage.setItem('products', JSON.stringify(products));
             loadProducts();
-            Swal.fire('ລຶບສຳເລັດ!', 'ສິນຄ້າຖືກລຶບອອກຈາກລະບົບແລ້ວ', 'success');
+            Swal.fire('ລົບສຳເລັດ!', 'ສິນຄ້າຖືກລົບອອກຈາກລະບົບແລ້ວ', 'success');
         }
     });
 }
